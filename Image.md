@@ -26,13 +26,5 @@ The ConvNet is trained to refine the previous mask to the current frame
 ![캡처4](https://user-images.githubusercontent.com/74402562/117539303-018a3980-b045-11eb-850d-41412f1e72bf.PNG)
 
 ----------------------------------------
-## RVOS(End-to-End Recurrent Network for Video Object Segmentation) [[Paper]](https://arxiv.org/pdf/1903.05612.pdf)
-- Spartial recurrence와 Temporal recurrence를 모두 고려한다.
-- Frame sequence뿐만 아니라 Object sequence도 고려한다. 예) 사람-말-개 순서로 마스크를 생성
-![캡처5](https://user-images.githubusercontent.com/74402562/117539306-02bb6680-b045-11eb-9d2b-74cb360f0484.PNG)
 
-![캡처6](https://user-images.githubusercontent.com/74402562/117539309-03ec9380-b045-11eb-8ef9-03e241ff2f4a.PNG)
 
-![캡처7](https://user-images.githubusercontent.com/74402562/117539312-05b65700-b045-11eb-84b8-a529e8120fdf.PNG)
-
------------------------------------------
