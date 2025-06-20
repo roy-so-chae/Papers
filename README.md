@@ -1,4 +1,4 @@
-# Video Object Segmentation
+# Image Generation
 ## OSVOS(One-Shot Video Object Segmentation) [[Paper]](https://arxiv.org/pdf/1611.05198.pdf)
 - 각 frame을 독립적으로 연산하며 Time sequence상에서 continuous하게 correlation을 활용하지 않는다.
 
