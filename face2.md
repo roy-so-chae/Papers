@@ -36,22 +36,3 @@ The ConvNet is trained to refine the previous mask to the current frame
 ![캡처7](https://user-images.githubusercontent.com/74402562/117539312-05b65700-b045-11eb-84b8-a529e8120fdf.PNG)
 
 -----------------------------------------
-## STMN(Video Object Segmentation using Space-Time Memory Networks) [[Paper]](https://arxiv.org/pdf/1904.00607.pdf)
-- 여러 개의 intermediate frame을 사용하는 방법을 제안한다.
-
-![캡처8](https://user-images.githubusercontent.com/74402562/117539313-06e78400-b045-11eb-9898-9bc5e9995b42.PNG)
-
-- Memory구조를 활용하여 이전 Frame들의 정보를 저장하고, 현재 Frame에 도움되는 부분을 읽어서 사용한다.
-- 아래 그림의 왼쪽 부분처럼 이전 RGB frame과 foreground mask가 memory에 저장되고, 오른쪽 부분에서는 현재 주어진 frame을 기반으로 memory에서 정보를 가져온 후 mask를 예측한다.
-![캡처9](https://user-images.githubusercontent.com/74402562/117539314-08b14780-b045-11eb-9862-ffe608732ac2.PNG)
-
-- Query key와 memory key의 similarity를 dot product로 계산한 후 softmax값을 memory value과 weighted sum을 한다. 이렇게 read된 memory는 query value와 concat되어 최종 read output이 된다.
-
-![캡처10](https://user-images.githubusercontent.com/74402562/117539319-0a7b0b00-b045-11eb-9b6e-a579f5db0ceb.PNG)
-
------------------------------------------
-## STCNN(Spatiotemporal CNN for Video Object Segmentation) [[Paper]](https://arxiv.org/pdf/1904.02363.pdf)
-- GAN의 구조 사용    
-![캡처](https://user-images.githubusercontent.com/74402562/120359746-0213a880-c343-11eb-86f0-4f19eaa3160a.PNG)
-
-![캡처2](https://user-images.githubusercontent.com/74402562/120359749-0344d580-c343-11eb-8719-2d93a10eefc7.PNG)
