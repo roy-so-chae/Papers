@@ -1,14 +1,20 @@
 # Image Generation
-## OSVOS(One-Shot Video Object Segmentation) [[Paper]](https://arxiv.org/pdf/1611.05198.pdf)
-- 각 frame을 독립적으로 연산하며 Time sequence상에서 continuous하게 correlation을 활용하지 않는다.
+## Align Your Flow: Scaling Continuous-Time Flow Map Distillation [[Paper]]([https://arxiv.org/pdf/1611.05198.pdf](https://arxiv.org/pdf/2506.14603))
+- 텍스트-이미지 플로우 맵 모델을 제시
 
-Frame-based processing introduces temporal inconsistencies 
+텍스트-이미지 변환
+또한 FLUX.1-dev 모델을 정제하여 텍스트-이미지 생성 방식을 평가합니다 . 이전 연구에 따라 기본 모델에 경량 LoRA를 추가하고 AYF-EMD 목표값을 사용하여 미세 조정합니다. 이 미세 조정 과정은 매우 빠르며, 8개의 A100 GPU에서 약 4시간밖에 걸리지 않습니다.
 
-![캡처1](https://user-images.githubusercontent.com/74402562/117539295-fc2cef00-b044-11eb-85d3-437cbdd2a27f.PNG)
+이미지넷 512x512
+이 섹션에서는 ImageNet 512x512에서 증류된 흐름 맵 모델이 생성한 몇 가지 1단계 및 2단계 샘플을 보여드립니다.
 
-But results are still very convincing
 
-![캡처2](https://user-images.githubusercontent.com/74402562/117539299-fe8f4900-b044-11eb-9cac-7df6a49b0101.PNG)
+ImageNet 512x512에서 AYF 흐름 맵 모델로 생성된 단계별 샘플입니다.
+
+
+ImageNet 512x512에서 AYF 흐름 맵 모델에 의해 생성된 2단계 샘플입니다.
+
+
 
 ------------------------------------------
 ## MaskTrack(Learning Video Object Segmentation from Static Images) [[Paper]](https://arxiv.org/pdf/1612.02646.pdf)
