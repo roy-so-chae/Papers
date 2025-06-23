@@ -9,7 +9,6 @@
 - pix2pix : https://arxiv.org/pdf/1611.07004.pdf
 
 
-![캡처](https://user-images.githubusercontent.com/74402562/103651687-563d7b00-4fa5-11eb-8c88-74006ae760fb.PNG)
 
 -------------------------------------------------
 GAN은 생성자(generator,G)와 구분자(discriminator,D), 두 네트워크를 적대적(adversarial)으로 학습시키는 비지도 학습 기반 생성모델이다. 
