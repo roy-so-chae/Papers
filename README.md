@@ -8,7 +8,8 @@
 
 Image MaskTrack
 
-![[Pasted image 20250624103336.png]]
+![캡처0](https://user-images.githubusercontent.com/74402562/117539300-ffc07600-b044-11eb-93e6-e9163ff956a7.PNG)
+![캡처0](https://medium.com/@beckham.arieon/ai-image-generator-free-a-bloggers-case-study-for-stunning-visuals-da76c9f30ede?source=rss------artificial_intelligence-5)
 
 
 ------------------------------------------
