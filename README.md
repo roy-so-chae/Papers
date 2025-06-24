@@ -8,7 +8,7 @@
 The ConvNet is trained to refine the previous mask to the current frame
 
 ![캡처3](https://user-images.githubusercontent.com/74402562/117539300-ffc07600-b044-11eb-93e6-e9163ff956a7.PNG)
-
+![캡처6](https://user-images.githubusercontent.com/74402562/117539303-018a3980-b045-11eb-850d-41412f1e72bf.PNG)
 
 
 ------------------------------------------
