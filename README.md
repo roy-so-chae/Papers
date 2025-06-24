@@ -5,7 +5,9 @@
 텍스트-이미지 변환
 또한 FLUX.1-dev 모델을 정제하여 텍스트-이미지 생성 방식을 평가합니다 . 이전 연구에 따라 기본 모델에 경량 LoRA를 추가하고 AYF-EMD 목표값을 사용하여 미세 조정합니다. 이 미세 조정 과정은 매우 빠르며, 8개의 A100 GPU에서 약 4시간밖에 걸리지 않습니다.
 
+The ConvNet is trained to refine the previous mask to the current frame
 
+![캡처3](https://user-images.githubusercontent.com/74402562/117539300-ffc07600-b044-11eb-93e6-e9163ff956a7.PNG)
 
 
 
