@@ -1,4 +1,8 @@
-# SD (Stable Diffusion) Align Your Flow Scaling Continuous-Time Flow Map Distillation
+# Stable Diffusion (SD)
+
+---
+
+## Align Your Flow Scaling Continuous-Time Flow Map Distillation
 
 ----------
 [arxiv](https://arxiv.org/abs/2506.14603) [pdf](https://arxiv.org/pdf/2506.14603)
