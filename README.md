@@ -24,8 +24,25 @@ The ConvNet is trained to refine the previous mask to the current frame
 ---------------------------------------
 ### Stable Diffusion # Distillation 
 
-[[Align Your Flow Scaling Continuous-Time Flow Map Distillation]]
-[[Adversarial Diffusion Distillation]]
+EmbodiedGen Towards a Generative 3D World Engine for Embodied Intelligence
+
+[arxiv](https://arxiv.org/abs/2506.10600), [pdf](https://arxiv.org/pdf/2506.10600)
+[prj](https://horizonrobotics.github.io/robot_lab/embodied_gen/index.html)
+
+#WFM/WorldFoundataModel
+
+---
+**_EmbodiedGen은_** 생성적 AI를 활용하여 체현 지능 관련 연구에서 일반화 과제를 해결하고, 타당한 물리 법칙을 기반으로 하는 생성적 3D 자산으로 구성된 다양하고 상호작용적인 3D 세계를 생성하는 툴킷입니다. 
+
+**_EmbodiedGen은_** _이미지-3D 변환_ , _텍스트-3D 변환_ , _텍스처 생성_ , _관절 객체 생성_ , _장면 생성_ , _레이아웃 생성의_ 6가지 핵심 모듈로 구성됩니다 .
+
+
+![그림1](https://horizonrobotics.github.io/robot_lab/embodied_gen/static/images/overall_method.jpg)
+
+
+---
+
+
 
 
 
