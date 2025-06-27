@@ -24,7 +24,8 @@ The ConvNet is trained to refine the previous mask to the current frame
 ---------------------------------------
 ### Stable Diffusion # Distillation 
 
-EmbodiedGen Towards a Generative 3D World Engine for Embodied Intelligence
+---
+### EmbodiedGen Towards a Generative 3D World Engine for Embodied Intelligence
 
 [arxiv](https://arxiv.org/abs/2506.10600), [pdf](https://arxiv.org/pdf/2506.10600)
 [prj](https://horizonrobotics.github.io/robot_lab/embodied_gen/index.html)
