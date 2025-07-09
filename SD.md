@@ -1,5 +1,13 @@
 # Stable Diffusion (SD)
 
+
+
+
+---
+
+[Hugging Face는 로봇 산업 전체를 뒤흔들 수 있는 299달러짜리 로봇을 출시했습니다.](https://venturebeat.com/ai/hugging-face-just-launched-a-299-robot-that-could-disrupt-the-entire-robotics-industry/)
+
+
 ---
 
 ## Align Your Flow Scaling Continuous-Time Flow Map Distillation
