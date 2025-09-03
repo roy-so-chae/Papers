@@ -1,3 +1,5 @@
+09.08
+---
 # Image Generation
 ## Align Your Flow: Scaling Continuous-Time Flow Map Distillation [[Paper]]([https://arxiv.org/pdf/2506.14603.pdf]))
 - 텍스트-이미지 플로우 맵 모델을 제시
