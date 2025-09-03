@@ -3,6 +3,7 @@
 ### Figma AI
 
 **[Figma AI로 모바일 앱을 디자인하고 구축하세요](https://app.therundown.ai/guides/design-and-build-a-mobile-app-with-figma-ai?utm_source=www.therundown.ai&utm_medium=referral&utm_campaign=ai-gives-paralyzed-patients-robotic-control)**
+
 [요약](https://www.therundown.ai/p/ai-gives-paralyzed-patients-robotic-control?_bhlid=4eaa234680798ad3bdb45514b5705f029891f88c)
 
 ---
