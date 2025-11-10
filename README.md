@@ -20,8 +20,9 @@
    - 일일 100개 요청 무료 제공
 
 2. **웹앱 열기**
-   - `news-search.html` 파일을 브라우저로 열기
-   - 또는 [GitHub Pages](https://username.github.io/Papers/news-search.html)에서 접속
+   - `index.html` 또는 `news-search.html` 파일을 브라우저로 열기
+   - 또는 GitHub Pages에서 접속: `https://[username].github.io/Papers/`
+   - 직접 파일 열기: 로컬에서 `index.html` 더블클릭
 
 3. **API 키 입력**
    - 상단의 "News API 키" 입력란에 발급받은 키 입력
