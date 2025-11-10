@@ -58,6 +58,30 @@ https://news.google.com/rss/search?q=구글+AI+OR+구글+제미나이+OR+인공�
 
 **이 URL들은 브라우저에서 직접 열어서 확인할 수 있습니다!** RSS 형식으로 실제 뉴스 목록이 표시됩니다.
 
+### ⚠️ 중요: 기사 제목과 URL 매칭에 대하여
+
+**서버 버전 (`npm start`):**
+- ✅ **실제 Google News RSS에서 수집**
+- ✅ **기사 제목과 URL이 정확히 매칭됨**
+- ✅ RSS 파서가 자동으로 `<item>` 태그 내의 제목과 링크를 매칭
+- ✅ 클릭 시 실제 언론사 기사로 이동 (Google News를 통한 자동 리다이렉트)
+
+**Standalone HTML 버전 (index-standalone.html):**
+- ⚠️ **오프라인 데모용 샘플 데이터**
+- ⚠️ 링크는 Google News 검색 페이지로 이동 (특정 기사가 아님)
+- ⚠️ 실제 사용 시 서버 버전 권장
+
+**코드 검증:**
+```javascript
+// RSS 파서가 각 <item>에서 제목과 링크를 자동 매칭
+const articles = feed.items.map(item => ({
+  title: item.title,  // 같은 item 객체
+  link: item.link     // 같은 item 객체 → 항상 매칭됨
+}));
+```
+
+**상세 분석:** `RSS_STRUCTURE_ANALYSIS.md` 참고
+
 ## 🚀 빠른 시작
 
 ### 필요 조건
