@@ -1,6 +1,30 @@
 # 📰 Google AI News Daily
 
+**Version 1.0.0**
+
 매일 아침 자동으로 구글 AI 뉴스를 수집하는 반응형 웹 애플리케이션입니다.
+
+## 📍 GitHub 저장소
+
+- **Repository**: [https://github.com/roy-so-chae/Papers](https://github.com/roy-so-chae/Papers)
+- **Branch**: `claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8`
+- **프로젝트 폴더**: [google-ai-news-app](https://github.com/roy-so-chae/Papers/tree/claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8/google-ai-news-app)
+
+### 다운로드 방법
+
+**1. 전체 프로젝트 클론**
+```bash
+git clone https://github.com/roy-so-chae/Papers.git
+cd Papers
+git checkout claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8
+cd google-ai-news-app
+npm install
+npm start
+```
+
+**2. Standalone HTML 파일만 다운로드**
+- [index-standalone.html 다운로드](https://github.com/roy-so-chae/Papers/raw/claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8/google-ai-news-app/index-standalone.html)
+- 다운로드 후 더블클릭하면 바로 실행됩니다 (샘플 데이터 포함)
 
 ## ✨ 주요 기능
 
