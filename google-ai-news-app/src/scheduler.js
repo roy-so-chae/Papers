@@ -1,5 +1,13 @@
+/**
+ * Google AI News Daily - Scheduler
+ * Version: 1.0.0
+ * Description: Schedules automatic news collection
+ */
+
 const cron = require('node-cron');
 const { collectAllNews } = require('./newsCollector');
+
+const VERSION = '1.0.0';
 
 /**
  * Initialize news collection scheduler

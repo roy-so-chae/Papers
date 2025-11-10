@@ -280,6 +280,36 @@ PORT=8080 npm start
 - 마지막 업데이트 시간 표시
 - 실시간 피드백 (버튼 상태 변경)
 
+## 📌 버전 정보
+
+**현재 버전: 1.0.0**
+
+### 버전 이력
+
+#### v1.0.0 (2025-11-10)
+- ✅ 초기 릴리스
+- ✅ Google News RSS 실시간 뉴스 수집 기능
+- ✅ 영어/한국어 뉴스 각 5개씩 수집
+- ✅ 매일 아침 7시 자동 수집 스케줄러
+- ✅ 모바일 반응형 웹 UI
+- ✅ 다크모드 지원
+- ✅ Standalone HTML 버전 제공
+
+### 버전 확인 방법
+
+**코드에서:**
+- `server.js`: 상단 주석 및 `VERSION` 상수
+- `src/newsCollector.js`: 상단 주석 및 `VERSION` 상수
+- `src/scheduler.js`: 상단 주석 및 `VERSION` 상수
+- `public/app.js`: 상단 주석 및 `VERSION` 상수
+- `package.json`: `"version": "1.0.0"`
+
+**실행 시:**
+- 서버 시작 로그: `🚀 Google AI News Daily App v1.0.0`
+- 브라우저 콘솔: `Google AI News Daily v1.0.0`
+- 웹 UI 헤더: 제목 아래 버전 배지 표시
+- API: `GET /api/health` 응답에 버전 포함
+
 ## 📝 라이선스
 
 MIT License

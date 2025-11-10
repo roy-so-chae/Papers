@@ -1,3 +1,11 @@
+/**
+ * Google AI News Daily - Frontend App
+ * Version: 1.0.0
+ * Description: Client-side JavaScript for news display
+ */
+
+const VERSION = '1.0.0';
+
 // DOM Elements
 const newsContent = document.getElementById('newsContent');
 const loading = document.getElementById('loading');
@@ -7,6 +15,9 @@ const lastUpdated = document.getElementById('lastUpdated');
 
 // API Configuration
 const API_BASE = window.location.origin;
+
+// Log version on load
+console.log(`Google AI News Daily v${VERSION}`);
 
 /**
  * Format date for display

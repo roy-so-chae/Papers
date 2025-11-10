@@ -1,9 +1,16 @@
+/**
+ * Google AI News Daily - Server
+ * Version: 1.0.0
+ * Description: Express server for Google AI news aggregation
+ */
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { getCachedNews, collectAllNews } = require('./src/newsCollector');
 const { initScheduler } = require('./src/scheduler');
 
+const VERSION = '1.0.0';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -61,6 +68,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     success: true,
     status: 'running',
+    version: VERSION,
     timestamp: new Date().toISOString()
   });
 });
@@ -76,10 +84,11 @@ initScheduler();
 // Start server
 app.listen(PORT, () => {
   console.log(`\n${'='.repeat(50)}`);
-  console.log(`🚀 Google AI News Daily App`);
+  console.log(`🚀 Google AI News Daily App v${VERSION}`);
   console.log(`${'='.repeat(50)}`);
   console.log(`📡 Server running on port ${PORT}`);
   console.log(`🌐 Open http://localhost:${PORT}`);
+  console.log(`📌 Version: ${VERSION}`);
   console.log(`${'='.repeat(50)}\n`);
 });
 

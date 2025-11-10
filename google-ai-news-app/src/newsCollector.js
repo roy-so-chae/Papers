@@ -1,7 +1,15 @@
+/**
+ * Google AI News Daily - News Collector
+ * Version: 1.0.0
+ * Description: Collects news from Google News RSS feeds
+ */
+
 const Parser = require('rss-parser');
 const axios = require('axios');
 const fs = require('fs').promises;
 const path = require('path');
+
+const VERSION = '1.0.0';
 
 const parser = new Parser({
   headers: {
