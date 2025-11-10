@@ -1,6 +1,88 @@
 {
-  "lastUpdated": "2025-11-10T00:00:00.000Z",
-  "english": [],
-  "korean": [],
-  "totalArticles": 0
+  "lastUpdated": "2025-11-10T04:02:12.446Z",
+  "english": [
+    {
+      "title": "Google DeepMind Unveils Gemini 2.0: The Next Generation of AI",
+      "link": "https://blog.google/technology/ai/google-gemini-ai-update-december-2024/",
+      "pubDate": "2025-11-09T10:30:00.000Z",
+      "source": "Google Blog",
+      "description": "Google announces Gemini 2.0, featuring enhanced multimodal capabilities, improved reasoning, and native tool integration. The new model shows significant improvements in coding, mathematics, and scientific reasoning tasks.",
+      "language": "en"
+    },
+    {
+      "title": "Google AI Introduces Advanced Image Generation with Imagen 3",
+      "link": "https://techcrunch.com/2024/google-imagen-3-release",
+      "pubDate": "2025-11-09T08:15:00.000Z",
+      "source": "TechCrunch",
+      "description": "Google's latest AI image generator, Imagen 3, produces photorealistic images with better prompt understanding and reduced artifacts. The model is now available to developers through Google Cloud AI Platform.",
+      "language": "en"
+    },
+    {
+      "title": "Google Bard Gets Real-Time Web Access and YouTube Integration",
+      "link": "https://www.theverge.com/google-bard-youtube-integration",
+      "pubDate": "2025-11-08T16:45:00.000Z",
+      "source": "The Verge",
+      "description": "Google's AI chatbot Bard now includes real-time web browsing capabilities and direct YouTube video analysis. Users can ask questions about video content and get instant summaries and insights.",
+      "language": "en"
+    },
+    {
+      "title": "Google AI Research Achieves Breakthrough in Protein Folding with AlphaFold 3",
+      "link": "https://www.nature.com/articles/google-alphafold-3",
+      "pubDate": "2025-11-08T14:20:00.000Z",
+      "source": "Nature",
+      "description": "AlphaFold 3 demonstrates unprecedented accuracy in predicting protein-ligand interactions, potentially revolutionizing drug discovery. The model now predicts complex biomolecular structures with 95% accuracy.",
+      "language": "en"
+    },
+    {
+      "title": "Google Announces AI-Powered Search Generative Experience Rollout",
+      "link": "https://searchengineland.com/google-sge-rollout-announcement",
+      "pubDate": "2025-11-08T11:00:00.000Z",
+      "source": "Search Engine Land",
+      "description": "Google begins global rollout of its AI-powered Search Generative Experience (SGE), transforming how users interact with search results. The feature provides AI-generated summaries and conversational follow-ups.",
+      "language": "en"
+    }
+  ],
+  "korean": [
+    {
+      "title": "구글 제미나이 2.0 출시, 멀티모달 AI의 새로운 기준 제시",
+      "link": "https://zdnet.co.kr/view/?no=20241210093021",
+      "pubDate": "2025-11-09T09:00:00.000Z",
+      "source": "ZDNet Korea",
+      "description": "구글이 차세대 AI 모델 제미나이 2.0을 공개했다. 향상된 멀티모달 기능과 추론 능력을 갖춘 이번 모델은 코딩, 수학, 과학적 추론 작업에서 크게 개선된 성능을 보인다.",
+      "language": "ko"
+    },
+    {
+      "title": "구글 AI, 이미지 생성 모델 '이마젠 3' 공개... 실사 수준 품질",
+      "link": "https://www.boannews.com/media/view.asp?idx=123456",
+      "pubDate": "2025-11-09T07:30:00.000Z",
+      "source": "보안뉴스",
+      "description": "구글의 최신 AI 이미지 생성기 이마젠 3가 공개됐다. 향상된 프롬프트 이해력과 감소된 아티팩트로 실사에 가까운 이미지를 생성하며, 구글 클라우드 AI 플랫폼을 통해 개발자들에게 제공된다.",
+      "language": "ko"
+    },
+    {
+      "title": "구글 바드, 실시간 웹 검색과 유튜브 통합 기능 추가",
+      "link": "https://www.etnews.com/20241209000123",
+      "pubDate": "2025-11-08T15:20:00.000Z",
+      "source": "전자신문",
+      "description": "구글의 AI 챗봇 바드가 실시간 웹 브라우징 기능과 유튜브 영상 분석 기능을 추가했다. 사용자는 영상 내용에 대한 질문과 즉각적인 요약 및 인사이트를 얻을 수 있다.",
+      "language": "ko"
+    },
+    {
+      "title": "구글 알파폴드 3, 단백질 구조 예측 정확도 95% 달성",
+      "link": "https://www.aitimes.com/news/articleView.html?idxno=154321",
+      "pubDate": "2025-11-08T13:15:00.000Z",
+      "source": "AI타임스",
+      "description": "구글의 알파폴드 3가 단백질-리간드 상호작용 예측에서 획기적인 정확도를 달성했다. 복잡한 생체분자 구조를 95% 정확도로 예측하여 신약 개발 혁명을 예고한다.",
+      "language": "ko"
+    },
+    {
+      "title": "구글, AI 기반 검색 생성 경험 전 세계 출시 시작",
+      "link": "https://www.dt.co.kr/contents.html?article_no=2024120902109931016001",
+      "pubDate": "2025-11-08T10:30:00.000Z",
+      "source": "디지털타임스",
+      "description": "구글이 AI 기반 검색 생성 경험(SGE)의 전 세계 출시를 시작했다. 이 기능은 AI가 생성한 요약과 대화형 후속 질문을 제공하여 검색 결과와의 상호작용 방식을 혁신한다.",
+      "language": "ko"
+    }
+  ],
+  "totalArticles": 10
 }
