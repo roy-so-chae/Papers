@@ -9,34 +9,35 @@
 - 🔍 **실시간 뉴스 검색**: 키워드로 최신 뉴스 검색
 - ⏱️ **최신 2일 필터**: 최근 48시간 이내의 뉴스만 표시
 - 🌐 **다국어 지원**: 한국어, 영어, 일본어, 중국어
-- 📊 **정렬 옵션**: 최신순, 관련성, 인기순
+- 📊 **결과 수 조절**: 10개 ~ 100개 선택 가능
 - 🎨 **반응형 디자인**: 모바일, 태블릿, 데스크톱 모두 지원
 - 🔄 **자동 업데이트**: 1시간마다 자동 새로고침
+- ✅ **GitHub Pages 지원**: 공개 호스팅에서 작동
 
 ### 🚀 사용 방법
 
-1. **API 키 발급**
-   - [NewsAPI.org](https://newsapi.org/register)에서 무료 API 키 발급
-   - 일일 100개 요청 무료 제공
+1. **API 키 발급** (무료)
+   - [GNews.io](https://gnews.io/)에서 무료 API 키 발급
+   - 무료 플랜: 일일 100개 요청 제공
+   - ✅ **GitHub Pages에서 작동!** (NewsAPI와 달리 localhost 제한 없음)
 
 2. **웹앱 열기**
-   - `index.html` 또는 `news-search.html` 파일을 브라우저로 열기
-   - 또는 GitHub Pages에서 접속: `https://[username].github.io/Papers/`
-   - 직접 파일 열기: 로컬에서 `index.html` 더블클릭
+   - **GitHub Pages**: `https://roy-so-chae.github.io/Papers/`
+   - **로컬**: `index.html` 파일을 브라우저로 열기
 
 3. **API 키 입력**
-   - 상단의 "News API 키" 입력란에 발급받은 키 입력
+   - 상단의 "GNews API 키" 입력란에 발급받은 키 입력
    - 자동으로 브라우저에 저장됨 (다음 방문시 재입력 불필요)
 
 4. **뉴스 검색**
    - 검색창에 키워드 입력 (예: "AI", "기술", "경제")
    - Enter 키 또는 🔍 검색 버튼 클릭
-   - 언어와 정렬 옵션 변경 가능
+   - 언어와 결과 수 옵션 변경 가능
 
 ### 🔧 기술 스택
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **API**: [News API](https://newsapi.org/)
+- **API**: [GNews API](https://gnews.io/) (CORS 지원)
 - **배포**: GitHub Pages
 - **자동화**: GitHub Actions (매일 자동 배포)
 
@@ -44,6 +45,13 @@
 
 - GitHub Actions를 통해 매일 한국 시간 오전 9시에 자동 배포
 - 페이지 열람 중에도 1시간마다 자동으로 최신 뉴스 갱신
+
+### 💡 왜 GNews API인가?
+
+- ✅ **GitHub Pages 완벽 지원** (CORS 제한 없음)
+- ✅ **무료 플랜 제공** (일일 100개 요청)
+- ✅ **로컬 & 온라인 모두 작동**
+- ❌ NewsAPI는 무료 플랜이 localhost만 지원
 
 ### 📝 라이선스
 

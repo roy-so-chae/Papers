@@ -91,9 +91,10 @@
 
         .api-key-section {
             padding: 15px;
-            background: #f8f9fa;
+            background: #f0f7ff;
             border-radius: 8px;
             margin-bottom: 15px;
+            border-left: 4px solid #667eea;
         }
 
         .api-key-section label {
@@ -107,11 +108,13 @@
             display: block;
             color: #666;
             margin-top: 5px;
+            line-height: 1.5;
         }
 
         .api-key-section a {
             color: #667eea;
             text-decoration: none;
+            font-weight: 600;
         }
 
         .api-key-section a:hover {
@@ -298,6 +301,17 @@
             margin-bottom: 10px;
         }
 
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #667eea;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -321,17 +335,18 @@
     <div class="container">
         <header>
             <h1>📰 뉴스 검색</h1>
-            <p class="subtitle">최신 2일간의 뉴스를 실시간으로 검색하세요</p>
+            <p class="subtitle">최신 2일간의 뉴스를 실시간으로 검색하세요<span class="badge">GitHub Pages 지원</span></p>
         </header>
 
         <div class="search-container">
             <div class="api-key-section">
-                <label for="apiKey">News API 키:</label>
+                <label for="apiKey">🔑 GNews API 키:</label>
                 <input type="text" id="apiKey" placeholder="여기에 API 키를 입력하세요">
                 <small>
+                    ✅ <strong>GitHub Pages에서 작동!</strong><br>
                     API 키가 없으신가요?
-                    <a href="https://newsapi.org/register" target="_blank">무료로 받기</a>
-                    (저장됨: 브라우저 로컬 스토리지)
+                    <a href="https://gnews.io/" target="_blank">무료로 받기 (GNews.io)</a><br>
+                    무료 플랜: 일일 100개 요청 | 저장 위치: 브라우저 로컬 스토리지
                 </small>
             </div>
 
@@ -351,11 +366,12 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="sortBy">정렬:</label>
-                    <select id="sortBy">
-                        <option value="publishedAt">최신순</option>
-                        <option value="relevancy">관련성</option>
-                        <option value="popularity">인기순</option>
+                    <label for="maxResults">결과 수:</label>
+                    <select id="maxResults">
+                        <option value="10">10개</option>
+                        <option value="20">20개</option>
+                        <option value="50">50개</option>
+                        <option value="100">100개</option>
                     </select>
                 </div>
             </div>
@@ -363,7 +379,7 @@
 
         <div id="infoBar" class="info-bar" style="display: none;">
             <span class="last-updated">마지막 업데이트: <span id="lastUpdate"></span></span>
-            <span class="results-count">결과: <span id="resultsCount">0</span>개</span>
+            <span class="results-count">결과: <span id="resultsCount">0</span>개 (최신 2일)</span>
         </div>
 
         <div id="loading" class="loading" style="display: none;">
@@ -378,7 +394,7 @@
 
     <script>
         // API 키 관리
-        const API_KEY_STORAGE = 'newsApiKey';
+        const API_KEY_STORAGE = 'gnewsApiKey';
 
         // 페이지 로드시 저장된 API 키 불러오기
         window.addEventListener('DOMContentLoaded', () => {
@@ -411,7 +427,7 @@
 
         function showError(message) {
             const errorDiv = document.getElementById('error');
-            errorDiv.textContent = message;
+            errorDiv.innerHTML = message;
             errorDiv.style.display = 'block';
             document.getElementById('loading').style.display = 'none';
             document.getElementById('newsContainer').innerHTML = '';
@@ -437,6 +453,7 @@
             const twoDaysAgo = new Date(today);
             twoDaysAgo.setDate(today.getDate() - 2);
 
+            // GNews API는 날짜 형식: YYYY-MM-DDTHH:MM:SSZ
             return {
                 from: twoDaysAgo.toISOString(),
                 to: today.toISOString()
@@ -446,7 +463,7 @@
         async function searchNews() {
             const apiKey = getApiKey();
             if (!apiKey) {
-                showError('⚠️ News API 키를 입력해주세요. 무료로 https://newsapi.org 에서 받을 수 있습니다.');
+                showError('⚠️ GNews API 키를 입력해주세요.<br>무료로 <a href="https://gnews.io/" target="_blank" style="color: #667eea; font-weight: 600;">GNews.io</a>에서 받을 수 있습니다.');
                 return;
             }
 
@@ -459,28 +476,28 @@
             showLoading();
 
             const language = document.getElementById('language').value;
-            const sortBy = document.getElementById('sortBy').value;
+            const maxResults = document.getElementById('maxResults').value;
             const dateRange = getDateRange();
 
-            const url = `https://newsapi.org/v2/everything?` +
+            const url = `https://gnews.io/api/v4/search?` +
                 `q=${encodeURIComponent(query)}` +
+                `&lang=${language}` +
+                `&max=${maxResults}` +
                 `&from=${dateRange.from}` +
                 `&to=${dateRange.to}` +
-                `&language=${language}` +
-                `&sortBy=${sortBy}` +
-                `&apiKey=${apiKey}`;
+                `&apikey=${apiKey}`;
 
             try {
                 const response = await fetch(url);
                 const data = await response.json();
 
-                if (data.status === 'error') {
-                    showError(`❌ 오류: ${data.message}`);
+                if (data.errors) {
+                    showError(`❌ 오류: ${data.errors.join(', ')}`);
                     return;
                 }
 
                 displayNews(data.articles);
-                updateInfoBar(data.totalResults);
+                updateInfoBar(data.totalArticles || data.articles.length);
             } catch (error) {
                 showError(`❌ 네트워크 오류: ${error.message}`);
             } finally {
@@ -495,28 +512,38 @@
             showLoading();
 
             const language = document.getElementById('language').value;
-            const sortBy = document.getElementById('sortBy').value;
+            const maxResults = document.getElementById('maxResults').value;
             const dateRange = getDateRange();
 
-            const url = `https://newsapi.org/v2/everything?` +
-                `q=뉴스 OR news OR technology` +
+            // 언어별 기본 검색어
+            const defaultQueries = {
+                'ko': '뉴스',
+                'en': 'news',
+                'ja': 'ニュース',
+                'zh': '新闻'
+            };
+
+            const defaultQuery = defaultQueries[language] || 'news';
+
+            const url = `https://gnews.io/api/v4/search?` +
+                `q=${encodeURIComponent(defaultQuery)}` +
+                `&lang=${language}` +
+                `&max=${maxResults}` +
                 `&from=${dateRange.from}` +
                 `&to=${dateRange.to}` +
-                `&language=${language}` +
-                `&sortBy=${sortBy}` +
-                `&apiKey=${apiKey}`;
+                `&apikey=${apiKey}`;
 
             try {
                 const response = await fetch(url);
                 const data = await response.json();
 
-                if (data.status === 'error') {
-                    showError(`❌ 오류: ${data.message}`);
+                if (data.errors) {
+                    showError(`❌ 오류: ${data.errors.join(', ')}`);
                     return;
                 }
 
                 displayNews(data.articles);
-                updateInfoBar(data.totalResults);
+                updateInfoBar(data.totalArticles || data.articles.length);
             } catch (error) {
                 showError(`❌ 네트워크 오류: ${error.message}`);
             } finally {
@@ -539,8 +566,8 @@
 
             container.innerHTML = articles.map(article => `
                 <div class="news-card">
-                    ${article.urlToImage ?
-                        `<img src="${article.urlToImage}" alt="${article.title}" class="news-image" onerror="this.style.display='none'">`
+                    ${article.image ?
+                        `<img src="${article.image}" alt="${article.title}" class="news-image" onerror="this.style.display='none'">`
                         : ''}
                     <div class="news-content">
                         <h2 class="news-title">${article.title}</h2>
@@ -585,7 +612,7 @@
             infoBar.style.display = 'flex';
         }
 
-        // 매일 자동 새로고침 (페이지가 열려있을 때)
+        // 자동 새로고침 (1시간마다)
         setInterval(() => {
             const apiKey = getApiKey();
             if (apiKey && document.getElementById('searchInput').value.trim()) {
@@ -593,7 +620,7 @@
             } else if (apiKey) {
                 loadLatestNews();
             }
-        }, 3600000); // 1시간마다 자동 새로고침
+        }, 3600000); // 1시간
     </script>
 </body>
 </html>
