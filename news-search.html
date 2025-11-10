@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뉴스 검색 - 최신 2일</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .api-key-section {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .api-key-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .api-key-section small {
+            display: block;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .api-key-section a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .api-key-section a:hover {
+            text-decoration: underline;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        select:focus {
+            border-color: #667eea;
+        }
+
+        .info-bar {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .results-count {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #e0e0e0;
+        }
+
+        .news-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9em;
+        }
+
+        .news-source {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .news-date {
+            color: #999;
+        }
+
+        .news-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .news-link:hover {
+            color: #764ba2;
+        }
+
+        .error {
+            background: #fee;
+            border: 2px solid #fcc;
+            border-radius: 8px;
+            padding: 20px;
+            color: #c33;
+            text-align: center;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .no-results h2 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📰 뉴스 검색</h1>
+            <p class="subtitle">최신 2일간의 뉴스를 실시간으로 검색하세요</p>
+        </header>
+
+        <div class="search-container">
+            <div class="api-key-section">
+                <label for="apiKey">News API 키:</label>
+                <input type="text" id="apiKey" placeholder="여기에 API 키를 입력하세요">
+                <small>
+                    API 키가 없으신가요?
+                    <a href="https://newsapi.org/register" target="_blank">무료로 받기</a>
+                    (저장됨: 브라우저 로컬 스토리지)
+                </small>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="검색어를 입력하세요 (예: AI, 기술, 경제)">
+                <button onclick="searchNews()">🔍 검색</button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="language">언어:</label>
+                    <select id="language">
+                        <option value="ko">한국어</option>
+                        <option value="en">English</option>
+                        <option value="ja">日本語</option>
+                        <option value="zh">中文</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy">정렬:</label>
+                    <select id="sortBy">
+                        <option value="publishedAt">최신순</option>
+                        <option value="relevancy">관련성</option>
+                        <option value="popularity">인기순</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="infoBar" class="info-bar" style="display: none;">
+            <span class="last-updated">마지막 업데이트: <span id="lastUpdate"></span></span>
+            <span class="results-count">결과: <span id="resultsCount">0</span>개</span>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>뉴스를 불러오는 중...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+
+        <div id="newsContainer" class="news-grid"></div>
+    </div>
+
+    <script>
+        // API 키 관리
+        const API_KEY_STORAGE = 'newsApiKey';
+
+        // 페이지 로드시 저장된 API 키 불러오기
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedApiKey = localStorage.getItem(API_KEY_STORAGE);
+            if (savedApiKey) {
+                document.getElementById('apiKey').value = savedApiKey;
+            }
+
+            // Enter 키로 검색
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchNews();
+                }
+            });
+
+            // API 키 저장
+            document.getElementById('apiKey').addEventListener('change', (e) => {
+                localStorage.setItem(API_KEY_STORAGE, e.target.value);
+            });
+
+            // 초기 뉴스 로드 (API 키가 있으면)
+            if (savedApiKey) {
+                loadLatestNews();
+            }
+        });
+
+        function getApiKey() {
+            return document.getElementById('apiKey').value.trim();
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('newsContainer').innerHTML = '';
+            document.getElementById('infoBar').style.display = 'none';
+        }
+
+        function hideError() {
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('newsContainer').innerHTML = '';
+            hideError();
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function getDateRange() {
+            const today = new Date();
+            const twoDaysAgo = new Date(today);
+            twoDaysAgo.setDate(today.getDate() - 2);
+
+            return {
+                from: twoDaysAgo.toISOString(),
+                to: today.toISOString()
+            };
+        }
+
+        async function searchNews() {
+            const apiKey = getApiKey();
+            if (!apiKey) {
+                showError('⚠️ News API 키를 입력해주세요. 무료로 https://newsapi.org 에서 받을 수 있습니다.');
+                return;
+            }
+
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                showError('⚠️ 검색어를 입력해주세요.');
+                return;
+            }
+
+            showLoading();
+
+            const language = document.getElementById('language').value;
+            const sortBy = document.getElementById('sortBy').value;
+            const dateRange = getDateRange();
+
+            const url = `https://newsapi.org/v2/everything?` +
+                `q=${encodeURIComponent(query)}` +
+                `&from=${dateRange.from}` +
+                `&to=${dateRange.to}` +
+                `&language=${language}` +
+                `&sortBy=${sortBy}` +
+                `&apiKey=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.status === 'error') {
+                    showError(`❌ 오류: ${data.message}`);
+                    return;
+                }
+
+                displayNews(data.articles);
+                updateInfoBar(data.totalResults);
+            } catch (error) {
+                showError(`❌ 네트워크 오류: ${error.message}`);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function loadLatestNews() {
+            const apiKey = getApiKey();
+            if (!apiKey) return;
+
+            showLoading();
+
+            const language = document.getElementById('language').value;
+            const sortBy = document.getElementById('sortBy').value;
+            const dateRange = getDateRange();
+
+            const url = `https://newsapi.org/v2/everything?` +
+                `q=뉴스 OR news OR technology` +
+                `&from=${dateRange.from}` +
+                `&to=${dateRange.to}` +
+                `&language=${language}` +
+                `&sortBy=${sortBy}` +
+                `&apiKey=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.status === 'error') {
+                    showError(`❌ 오류: ${data.message}`);
+                    return;
+                }
+
+                displayNews(data.articles);
+                updateInfoBar(data.totalResults);
+            } catch (error) {
+                showError(`❌ 네트워크 오류: ${error.message}`);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function displayNews(articles) {
+            const container = document.getElementById('newsContainer');
+
+            if (!articles || articles.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results" style="grid-column: 1/-1;">
+                        <h2>검색 결과가 없습니다</h2>
+                        <p>다른 검색어로 시도해보세요.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = articles.map(article => `
+                <div class="news-card">
+                    ${article.urlToImage ?
+                        `<img src="${article.urlToImage}" alt="${article.title}" class="news-image" onerror="this.style.display='none'">`
+                        : ''}
+                    <div class="news-content">
+                        <h2 class="news-title">${article.title}</h2>
+                        <p class="news-description">${article.description || '설명 없음'}</p>
+                        <div class="news-meta">
+                            <span class="news-source">${article.source.name}</span>
+                            <span class="news-date">${formatDate(article.publishedAt)}</span>
+                        </div>
+                        <a href="${article.url}" target="_blank" class="news-link">
+                            기사 전문 보기 →
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000 / 60); // 분 단위
+
+            if (diff < 60) {
+                return `${diff}분 전`;
+            } else if (diff < 1440) {
+                return `${Math.floor(diff / 60)}시간 전`;
+            } else {
+                return date.toLocaleDateString('ko-KR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+        }
+
+        function updateInfoBar(count) {
+            const infoBar = document.getElementById('infoBar');
+            const lastUpdate = document.getElementById('lastUpdate');
+            const resultsCount = document.getElementById('resultsCount');
+
+            lastUpdate.textContent = new Date().toLocaleString('ko-KR');
+            resultsCount.textContent = count;
+            infoBar.style.display = 'flex';
+        }
+
+        // 매일 자동 새로고침 (페이지가 열려있을 때)
+        setInterval(() => {
+            const apiKey = getApiKey();
+            if (apiKey && document.getElementById('searchInput').value.trim()) {
+                searchNews();
+            } else if (apiKey) {
+                loadLatestNews();
+            }
+        }, 3600000); // 1시간마다 자동 새로고침
+    </script>
+</body>
+</html>
