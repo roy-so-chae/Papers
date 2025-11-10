@@ -1,0 +1,327 @@
+# 📰 Google AI News Daily
+
+**Version 1.0.0**
+
+매일 아침 자동으로 구글 AI 뉴스를 수집하는 반응형 웹 애플리케이션입니다.
+
+## 📍 GitHub 저장소
+
+- **Repository**: [https://github.com/roy-so-chae/Papers](https://github.com/roy-so-chae/Papers)
+- **Branch**: `claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8`
+- **프로젝트 폴더**: [google-ai-news-app](https://github.com/roy-so-chae/Papers/tree/claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8/google-ai-news-app)
+
+### 다운로드 방법
+
+**1. 전체 프로젝트 클론**
+```bash
+git clone https://github.com/roy-so-chae/Papers.git
+cd Papers
+git checkout claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8
+cd google-ai-news-app
+npm install
+npm start
+```
+
+**2. Standalone HTML 파일만 다운로드**
+- [index-standalone.html 다운로드](https://github.com/roy-so-chae/Papers/raw/claude/google-ai-news-daily-app-011CUyT1ALX5r13RsZnNDCS8/google-ai-news-app/index-standalone.html)
+- 다운로드 후 더블클릭하면 바로 실행됩니다 (샘플 데이터 포함)
+
+## ✨ 주요 기능
+
+- 📅 **매일 아침 7시 자동 수집**: 최신 구글 AI 뉴스를 자동으로 수집
+- 🌍 **다국어 지원**: 영어와 한국어 뉴스 각각 5개씩 제공
+- 📰 **실제 뉴스 수집**: Google News RSS에서 실시간으로 진짜 뉴스 가져오기
+- 📱 **모바일 반응형**: 데스크톱, 태블릿, 모바일 모든 기기에서 최적화된 UI
+- ⚡ **실시간 새로고침**: 버튼 클릭으로 언제든지 최신 뉴스 업데이트
+- 🎨 **현대적인 디자인**: 깔끔하고 사용하기 쉬운 인터페이스
+- 🌙 **다크모드 지원**: 시스템 테마에 따라 자동 전환
+
+## 📰 실제 뉴스 수집 방식
+
+이 앱은 **실제 Google News RSS 피드**에서 진짜 뉴스를 가져옵니다:
+
+### English News
+```
+https://news.google.com/rss/search?q=Google+AI+OR+Google+Gemini+OR+Google+Bard+when:2d
+```
+- 검색어: "Google AI" OR "Google Gemini" OR "Google Bard"
+- 기간: 최근 2일 (when:2d)
+- 지역: 미국 (en-US)
+
+### Korean News
+```
+https://news.google.com/rss/search?q=구글+AI+OR+구글+제미나이+OR+인공지능+구글+when:2d
+```
+- 검색어: "구글 AI" OR "구글 제미나이" OR "인공지능 구글"
+- 기간: 최근 2일 (when:2d)
+- 지역: 한국 (ko-KR)
+
+**이 URL들은 브라우저에서 직접 열어서 확인할 수 있습니다!** RSS 형식으로 실제 뉴스 목록이 표시됩니다.
+
+### ⚠️ 중요: 기사 제목과 URL 매칭에 대하여
+
+**서버 버전 (`npm start`):**
+- ✅ **실제 Google News RSS에서 수집**
+- ✅ **기사 제목과 URL이 정확히 매칭됨**
+- ✅ RSS 파서가 자동으로 `<item>` 태그 내의 제목과 링크를 매칭
+- ✅ 클릭 시 실제 언론사 기사로 이동 (Google News를 통한 자동 리다이렉트)
+
+**Standalone HTML 버전 (index-standalone.html):**
+- ⚠️ **오프라인 데모용 샘플 데이터**
+- ⚠️ 링크는 Google News 검색 페이지로 이동 (특정 기사가 아님)
+- ⚠️ 실제 사용 시 서버 버전 권장
+
+**코드 검증:**
+```javascript
+// RSS 파서가 각 <item>에서 제목과 링크를 자동 매칭
+const articles = feed.items.map(item => ({
+  title: item.title,  // 같은 item 객체
+  link: item.link     // 같은 item 객체 → 항상 매칭됨
+}));
+```
+
+**상세 분석:** `RSS_STRUCTURE_ANALYSIS.md` 참고
+
+## 🚀 빠른 시작
+
+### 필요 조건
+
+- Node.js 14.x 이상
+- npm 또는 yarn
+
+### 설치 및 실행
+
+1. **의존성 설치**
+
+```bash
+cd google-ai-news-app
+npm install
+```
+
+2. **서버 실행**
+
+```bash
+npm start
+```
+
+3. **브라우저에서 접속**
+
+```
+http://localhost:3000
+```
+
+### 개발 모드 실행
+
+자동 재시작 기능이 있는 개발 모드로 실행:
+
+```bash
+npm run dev
+```
+
+## 📁 프로젝트 구조
+
+```
+google-ai-news-app/
+├── server.js                 # Express 서버 메인 파일
+├── package.json              # 프로젝트 설정 및 의존성
+├── .gitignore                # Git 제외 파일 목록
+├── README.md                 # 프로젝트 문서
+│
+├── src/                      # 백엔드 소스 코드
+│   ├── newsCollector.js     # 뉴스 수집 로직
+│   └── scheduler.js         # 자동 스케줄링
+│
+├── public/                   # 프론트엔드 정적 파일
+│   ├── index.html           # 메인 HTML
+│   ├── style.css            # 스타일시트
+│   └── app.js               # 클라이언트 JavaScript
+│
+└── data/                     # 데이터 저장소
+    └── news.json            # 수집된 뉴스 데이터
+```
+
+## 🔧 API 엔드포인트
+
+### GET /api/news
+
+저장된 뉴스 데이터를 가져옵니다.
+
+**응답 예시:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "lastUpdated": "2025-11-10T07:00:00.000Z",
+    "english": [...],
+    "korean": [...],
+    "totalArticles": 10
+  }
+}
+```
+
+### POST /api/news/refresh
+
+뉴스를 즉시 수집합니다.
+
+**응답 예시:**
+
+```json
+{
+  "success": true,
+  "message": "News refreshed successfully",
+  "data": {
+    "lastUpdated": "2025-11-10T10:30:00.000Z",
+    "english": [...],
+    "korean": [...],
+    "totalArticles": 10
+  }
+}
+```
+
+### GET /api/health
+
+서버 상태를 확인합니다.
+
+**응답 예시:**
+
+```json
+{
+  "success": true,
+  "status": "running",
+  "timestamp": "2025-11-10T10:30:00.000Z"
+}
+```
+
+## ⚙️ 설정
+
+### 자동 수집 시간 변경
+
+`src/scheduler.js` 파일에서 cron 스케줄을 수정할 수 있습니다:
+
+```javascript
+// 현재: 매일 오전 7시
+const schedule = '0 7 * * *';
+
+// 예시: 매일 오전 9시
+const schedule = '0 9 * * *';
+
+// 예시: 매일 오전 7시와 오후 7시
+const schedule = '0 7,19 * * *';
+```
+
+### 뉴스 수집 개수 변경
+
+`src/newsCollector.js`에서 수집 개수를 조정할 수 있습니다:
+
+```javascript
+// 각 언어별 10개씩 수집
+const [englishNews, koreanNews] = await Promise.all([
+  collectNews('en', 10),  // 영어 10개
+  collectNews('ko', 10)   // 한국어 10개
+]);
+```
+
+### 포트 변경
+
+환경 변수로 포트를 설정할 수 있습니다:
+
+```bash
+PORT=8080 npm start
+```
+
+## 🛠️ 기술 스택
+
+### 백엔드
+
+- **Node.js**: JavaScript 런타임
+- **Express**: 웹 프레임워크
+- **rss-parser**: RSS 피드 파싱
+- **node-cron**: 작업 스케줄링
+- **axios**: HTTP 클라이언트
+
+### 프론트엔드
+
+- **Vanilla JavaScript**: 프레임워크 없는 순수 JS
+- **CSS3**: 반응형 디자인, Grid, Flexbox
+- **HTML5**: 시맨틱 마크업
+
+## 📊 데이터 소스
+
+뉴스는 Google News RSS 피드에서 수집됩니다:
+
+- **영어 뉴스**: Google AI, Google Gemini, Google Bard 관련 최근 2일 뉴스
+- **한국어 뉴스**: 구글 AI, 구글 제미나이, 인공지능 구글 관련 최근 2일 뉴스
+
+## 🔄 자동 업데이트
+
+- **서버 측**: 매일 오전 7시에 자동으로 뉴스 수집
+- **클라이언트 측**: 30분마다 자동으로 뉴스 새로고침
+- **수동 새로고침**: 언제든지 "Refresh News" 버튼으로 즉시 업데이트
+
+## 📱 반응형 디자인
+
+- **데스크톱**: 최대 1200px 너비의 2단 레이아웃
+- **태블릿**: 768px 이하에서 최적화된 레이아웃
+- **모바일**: 480px 이하에서 1단 세로 레이아웃
+
+## 🎨 UI 특징
+
+- 현대적이고 깔끔한 카드 기반 디자인
+- 부드러운 애니메이션과 트랜지션
+- 직관적인 아이콘과 색상 사용
+- 접근성을 고려한 대비와 폰트 크기
+- 다크모드 자동 지원
+
+## 🚦 상태 관리
+
+- 로딩 상태 표시 (스피너)
+- 에러 메시지 표시
+- 마지막 업데이트 시간 표시
+- 실시간 피드백 (버튼 상태 변경)
+
+## 📌 버전 정보
+
+**현재 버전: 1.0.0**
+
+### 버전 이력
+
+#### v1.0.0 (2025-11-10)
+- ✅ 초기 릴리스
+- ✅ Google News RSS 실시간 뉴스 수집 기능
+- ✅ 영어/한국어 뉴스 각 5개씩 수집
+- ✅ 매일 아침 7시 자동 수집 스케줄러
+- ✅ 모바일 반응형 웹 UI
+- ✅ 다크모드 지원
+- ✅ Standalone HTML 버전 제공
+
+### 버전 확인 방법
+
+**코드에서:**
+- `server.js`: 상단 주석 및 `VERSION` 상수
+- `src/newsCollector.js`: 상단 주석 및 `VERSION` 상수
+- `src/scheduler.js`: 상단 주석 및 `VERSION` 상수
+- `public/app.js`: 상단 주석 및 `VERSION` 상수
+- `package.json`: `"version": "1.0.0"`
+
+**실행 시:**
+- 서버 시작 로그: `🚀 Google AI News Daily App v1.0.0`
+- 브라우저 콘솔: `Google AI News Daily v1.0.0`
+- 웹 UI 헤더: 제목 아래 버전 배지 표시
+- API: `GET /api/health` 응답에 버전 포함
+
+## 📝 라이선스
+
+MIT License
+
+## 🤝 기여
+
+이슈와 풀 리퀘스트를 환영합니다!
+
+## 📧 문의
+
+문제가 발생하거나 제안사항이 있으시면 이슈를 등록해주세요.
+
+---
+
+**Made with ❤️ for Google AI enthusiasts**
