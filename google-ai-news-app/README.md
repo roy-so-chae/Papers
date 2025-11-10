@@ -6,10 +6,33 @@
 
 - 📅 **매일 아침 7시 자동 수집**: 최신 구글 AI 뉴스를 자동으로 수집
 - 🌍 **다국어 지원**: 영어와 한국어 뉴스 각각 5개씩 제공
+- 📰 **실제 뉴스 수집**: Google News RSS에서 실시간으로 진짜 뉴스 가져오기
 - 📱 **모바일 반응형**: 데스크톱, 태블릿, 모바일 모든 기기에서 최적화된 UI
 - ⚡ **실시간 새로고침**: 버튼 클릭으로 언제든지 최신 뉴스 업데이트
 - 🎨 **현대적인 디자인**: 깔끔하고 사용하기 쉬운 인터페이스
 - 🌙 **다크모드 지원**: 시스템 테마에 따라 자동 전환
+
+## 📰 실제 뉴스 수집 방식
+
+이 앱은 **실제 Google News RSS 피드**에서 진짜 뉴스를 가져옵니다:
+
+### English News
+```
+https://news.google.com/rss/search?q=Google+AI+OR+Google+Gemini+OR+Google+Bard+when:2d
+```
+- 검색어: "Google AI" OR "Google Gemini" OR "Google Bard"
+- 기간: 최근 2일 (when:2d)
+- 지역: 미국 (en-US)
+
+### Korean News
+```
+https://news.google.com/rss/search?q=구글+AI+OR+구글+제미나이+OR+인공지능+구글+when:2d
+```
+- 검색어: "구글 AI" OR "구글 제미나이" OR "인공지능 구글"
+- 기간: 최근 2일 (when:2d)
+- 지역: 한국 (ko-KR)
+
+**이 URL들은 브라우저에서 직접 열어서 확인할 수 있습니다!** RSS 형식으로 실제 뉴스 목록이 표시됩니다.
 
 ## 🚀 빠른 시작
 

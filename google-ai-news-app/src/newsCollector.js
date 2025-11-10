@@ -12,7 +12,7 @@ const parser = new Parser({
 // Google News RSS URLs for AI news
 const NEWS_SOURCES = {
   en: 'https://news.google.com/rss/search?q=Google+AI+OR+Google+Gemini+OR+Google+Bard+when:2d&hl=en-US&gl=US&ceid=US:en',
-  ko: 'https://news.google.com/rss/search?q=구글+AI+OR+구글+제미나이+OR+인공지능+구글+when:2d&hl=ko&gl=KR&ceid=KR:ko'
+  ko: 'https://news.google.com/rss/search?q=' + encodeURIComponent('구글 AI OR 구글 제미나이 OR 인공지능 구글') + '+when:2d&hl=ko&gl=KR&ceid=KR:ko'
 };
 
 /**
